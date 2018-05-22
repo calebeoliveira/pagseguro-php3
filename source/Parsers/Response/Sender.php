@@ -51,7 +51,11 @@ trait Sender
      */
     public function setSender($sender)
     {
-        $phone = new Phone();
+	if (!$sender) {
+            return $this;
+	}
+	
+	$phone = new Phone();
         $phone->setAreaCode(current($sender->phone->areaCode))
               ->setNumber(current($sender->phone->number));
 
